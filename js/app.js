@@ -1,11 +1,11 @@
 /*-------------------------------- Constants --------------------------------*/
 const winCombos =  //step 4
-	[[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
+	[[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
 
 /*---------------------------- Variables (state) ----------------------------*/
 let win, lose, tie, turn, winner
-let board = []
+let board 
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -74,23 +74,25 @@ function render() {
 })
 }
 
+
 function playerName(){
 	if(turn === 1){
-		return "Player 1"
+		return "Player X"
 	} else if (turn === -1){
-		return "Player 2"
+		return "Player O"
 	} else {
 		return "Error in func playerName()";
 	}
+	
 }
 
 function handleClick(evt){
 	if(board[parseInt(evt.target.id.replace("sq",''))] !== null){
-		return
+		return 
 	} else if(winner !== null){
-		return
+		return 
 	} else {
-		board[parseInt(evt.target.id.replace("sq",''))] = turn
+		(board[parseInt(evt.target.id.replace("sq",''))] = turn)
 	}
 	turn *= -1
 	
@@ -103,11 +105,12 @@ function getWinner() {
 	winCombos.forEach(combo => {
 		if (Math.abs(board[combo[0]] + board[combo[1]] + board[combo[2]]) === 3){
 			winner = turn
-		} else if(!board.includes(null)){
-			winner = 'T'
+			
+		} 
+		if(!board.includes(null) && winner === null) 
+			return winner = 'T'
 		}
-	})
-	
+		)
 }
 
 
